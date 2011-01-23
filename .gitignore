@@ -1,6 +1,3 @@
-*.aux
-*.dvi
-*.log
-*.pdf
-*.gz
-*.toc
+/*
+!*.tex
+!/images/*
