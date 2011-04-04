@@ -1,28 +1,30 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a5paper,12pt]{scrbook}
 \usepackage[T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
+\tolerance 500
 \usepackage{mathtext}
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{float}
 \graphicspath{{images/}}
 
-\usepackage{geometry}
-\geometry{left=2cm}
-\geometry{right=1cm}
-\geometry{top=2cm}
-\geometry{bottom=2cm}
+\usepackage[a5paper]{geometry}
+%\geometry{left=2cm}
+%\geometry{right=1cm}
+%\geometry{top=2cm}
+%\geometry{bottom=2cm}
 
 \begin{document}
 \newgeometry{left=1cm,right=1cm,bottom=2cm,top=2cm}
 \input{Title}
 \restoregeometry
+\pagestyle{plain}
 \tableofcontents
 \newpage
 
-\section*{Введение}
-\addcontentsline{toc}{subsection}{Введение}
+\chapter*{Введение}
+\addcontentsline{toc}{chapter}{Введение}
 В этом пособии рассматриваются основы администрирования компьютерных сетей на базе операционных систем Microsoft Windows Server 2008 R2 и Novell Open Enterprise Server 2, начиная с установки, заканчивая настойкой базовых служб раздачи сетевых адресов, разрешения имён, управления пользователями. Наша задача состоит в том, чтобы показать, что можно решать схожие задачи администрирования на принципиально разных операционных системах. В результате получатся два сервера с одинаковым функционалом, достаточным для решения повсеневных задач небольшой фирмы.
 \par
 Мы рассмотрим такие задачи как:
@@ -35,11 +37,12 @@
 \item демонстрация рабочего процесса.
 \end{itemize}
 \newpage
-\setcounter{section}{0}
+\pagestyle{headings}	
+%\setcounter{chapter}{0}
 \input{WinSrv2k8}
 \newpage
 % Разделы в части II снова начинаются с 1
-\setcounter{section}{0}
+\setcounter{chapter}{0}
 \input{OES2}
 \newpage
 
