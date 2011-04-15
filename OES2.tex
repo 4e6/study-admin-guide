@@ -321,6 +321,28 @@ DSfW расшифровывается как Domain Services for Windows. Пос
 \end{figure}
 \clearpage
 
+\subsection{ZENworks Desktop Management}
+Novell ZENworks --- это набор программных продуктов компании Novell, позволяющий осуществлять управление всем жизненным циклом серверов, рабочих станций (Microsoft Windows и Linux), портативных компьютеров и карманных персональных компьютеров. Нам понадобится один из его компонентов --- ZENworks Desktop Management\footnote{Образ диска доступен для скачивания с сайта http://download.novell.com/}, с помощью которого мы будем создавать перемещаемые пользовательские профили. Установка происходит из консоли OES сервера:
+\begin{enumerate}
+  \item \textsf{\$ cd} mount directory --- чтобы перейти в директорию, куда смонтировался диск.
+  \item \textsf{\$ ./setup} чтобы запустить установку
+  \item соглашаемся с лицензионными соглашениями и выбираем пункт 2 --- установка Desktom Management server. ZENworks Middle Tier Server устанавливать не требуется.
+  \begin{verbatim}
+==================================================================
+Choose Install Set
+------------------
+Please choose the Install Set to be installed by this installer.
+->1- All Features
+  2- ZENworks Desktop Management Server
+  3- ZENworks Middle Tier Server
+
+  4- Customize...ENTER THE NUMBER FOR THE INSTALL SET, OR PRESS <ENTER> TO ACCEPT THE DEFAULT
+  :
+  \end{verbatim} 
+\end{enumerate}
+После окончания установки сервисы ZENworks запустятся автоматически.
+\clearpage
+
 \subsection{Веб администрирование}
 ОС \foreignlanguage{english}{Novell Open Enterprise Server} имеет в своём составе инструменты веб-администрирования. Чтобы получить к ним доступ необходима рабочая станция с совместимым браузером. В этом примере используется клиентская машина с операционной системой \foreignlanguage{english}{Windows 7} и браузером \foreignlanguage{english}{Internet Explorer 8}. Весь инструментарий доступен на главной станице сервера, в нашем случае, http://vsi.com
 \begin{figure}[H]
@@ -363,26 +385,48 @@ DSfW расшифровывается как Domain Services for Windows. Пос
 Теперь на сервере в каталоге ''/media/nss`` появился раздел ''MYVOLUME`` и мы можем приступить к следующему разделу настройки системы.
 \clearpage
 
-\subsection{ZENworks Desktop Management}
-Novell ZENworks --- это набор программных продуктов компании Novell, позволяющий осуществлять управление всем жизненным циклом серверов, рабочих станций (Microsoft Windows и Linux), портативных компьютеров и карманных персональных компьютеров. Нам понадобится один из его компонентов --- ZENworks Desktop Management\footnote{Диск доступен для скачивания с сайта http://download.novell.com/}, с помощью которого мы будем создавать перемещаемые пользовательские профили. Установка происходит из консоли OES сервера.
-\begin{enumerate}
-  \item \textsf{\$ cd} mount directory
-  \item \textsf{\$ ./setup} чтобы запустить установку
-  \item соглашаемся с лицензионными соглашениями и выбираем пункт 2 --- установка Desktom Management server. ZENworks Middle Tier Server устанавливать не требуется.
-  \begin{verbatim}
-==================================================================
-Choose Install Set
-------------------
-Please choose the Install Set to be installed by this installer.
-->1- All Features
-  2- ZENworks Desktop Management Server
-  3- ZENworks Middle Tier Server
+\subsection{Добавление пользователей}
+Администрирование пользователей каталога осуществляется в категории <<Администрирование Каталога>> iManager. Из него можно создавать объекты <<Организация>>, <<Подразделение>>, <<Пользователь>>, <<Группа>> и из них строить нужную нам схему предприятия.\par
+В качестве примера создадим пользователя ''gendir``, подразделение ''Eternity Systems`` и группу <<Руководство>>.
 
-  4- Customize...ENTER THE NUMBER FOR THE INSTALL SET, OR PRESS <ENTER> TO ACCEPT THE DEFAULT
-  :
-  \end{verbatim} 
-\end{enumerate}
-После окончания установки сервисы ZENworks запустятся автоматически.
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/imanager6.png}}
+\caption{Пользователь ''gendir``}
+\end{figure}
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/imanager3.png}}
+\caption{Подразделение ''Eternity Systems``}
+\end{figure}
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/imanager4.png}}
+\caption{Группа <<Руководство>>}
+\end{figure}
+\clearpage
 
-\subsection{Novell Client}
-Установка Novell Client\footnote{http://www.novell.com/products/clients/}
+Вход в домен eDirectory компьютера с операционной системой Windows происходит по такому же сценарию, как и вход в Active Directory благодаря службе Domain Services for Windows. На машине клиента зайдите в свойства системы и включите её в домен vsi.com
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/win_enter_domain1.png}}
+\caption{Свойства системы}
+\end{figure}
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/win_enter_domain2.png}}
+\caption{Регистрация в домене}
+\end{figure}
+\clearpage
+
+После успешного ввода учетной записи администратора сетевого каталога, появится сообщение об успешном входе в домен. Остаётся только перезагрузиться и войти под вновь созданным пользователем ''gendir``.
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/win_enter_domain3.png}}
+\caption{Членство в домене vsi.com}
+\end{figure}
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/win_enter_domain4.png}}
+\caption{Логин}
+\end{figure}
+\begin{figure}[H]
+\center{\includegraphics[width=1\linewidth]{oes/win_enter_domain5.png}}
+\caption{Вход в домен}
+\end{figure}
+
+%\subsection{Novell Client}
+%Установка Novell Client\footnote{http://www.novell.com/products/clients/}

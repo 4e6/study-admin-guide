@@ -29,8 +29,9 @@
 \tableofcontents
 \newpage
 
-\section*{Введение}
+\phantomsection
 \addcontentsline{toc}{section}{Введение}
+\section*{Введение}
 В этом пособии рассматриваются основы администрирования компьютерных сетей на базе операционных систем Microsoft Windows Server 2008 R2 и Novell Open Enterprise Server 2, начиная с установки, заканчивая настойкой базовых служб раздачи сетевых адресов, разрешения имён, управления пользователями. Наша задача состоит в том, чтобы показать, что можно решать схожие задачи администрирования на принципиально разных операционных системах. В результате получатся два сервера с одинаковым функционалом, достаточным для решения повсеневных задач небольшой фирмы.
 \par
 Мы рассмотрим такие задачи как:
@@ -44,15 +45,15 @@
 \end{itemize}
 \par
 Все правки, предложения и замечания Вы можете оставить здесь: \url{http://github.com/4e6/study-admin-guide/issues} или написать их нам на адрес \href{mailto:suwcag@gmail.com}{suwcag@gmail.com}.
-\newpage
-\setcounter{section}{0}
+\cleardoublepage
+%\setcounter{section}{0}
 \input{WinSrv2k8}
-\newpage
+\cleardoublepage
 % Разделы в части II снова начинаются с 1
-\setcounter{section}{0}
+%\setcounter{section}{0}
 \input{OES2}
-\newpage
-\setcounter{section}{0}
+\cleardoublepage	
+%\setcounter{section}{0}
 \input{Theory}
 \newpage
 \end{document}
